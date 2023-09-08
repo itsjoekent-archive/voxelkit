@@ -1,4 +1,5 @@
 NEXT
+
 - prettier
 - unit testing
 - translations system
@@ -9,4 +10,5 @@ NEXT
 - create the account field validation routes
 
 FUTURE
+
 - sensitive info in logs redaction

@@ -3,8 +3,8 @@ import xss from 'xss';
 import { convertNodeErrorToApiError } from '@/lib/api-error';
 import { Account, CreateAccountInputs } from '@/schema/account';
 
-type FormattedCreateAccountInputs = Omit<CreateAccountInputs, 'password'> 
-  & Pick<Account, 'passwordHash'>;
+type FormattedCreateAccountInputs = Omit<CreateAccountInputs, 'password'> &
+  Pick<Account, 'passwordHash'>;
 
 export async function formatCreateAccountInputData(
   createAccountInput: CreateAccountInputs

@@ -14,9 +14,6 @@ export type AccountWithInternalId = WithInternalId<Account>;
 export type AccountWithExternalId = WithExternalId<Account>;
 
 export type CreateAccountInputs = Omit<
-  Account, 
-  'avatarUrl'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'passwordHash'
+  Account,
+  'avatarUrl' | 'createdAt' | 'updatedAt' | 'passwordHash'
 > & { password: string };

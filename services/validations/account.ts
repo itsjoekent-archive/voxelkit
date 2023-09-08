@@ -51,7 +51,7 @@ export function isValidPassword(password: any): boolean {
     // @FUTURE_TRANSLATE
     throw new ApiError('Password must be less than 2056 characters', 400);
   }
-  
+
   return true;
 }
 
@@ -63,8 +63,10 @@ export function isValidCreateAccountInput(createAccountInput: any): boolean {
 
   const { firstName, lastName, email, password } = createAccountInput;
 
-  return isValidName(firstName) 
-    && isValidName(lastName)
-    && isValidEmail(email)
-    && isValidPassword(password);
+  return (
+    isValidName(firstName) &&
+    isValidName(lastName) &&
+    isValidEmail(email) &&
+    isValidPassword(password)
+  );
 }

@@ -9,7 +9,7 @@ First, add your new secret(s) in each Terraform environment file (`infrastructur
 ```hcl
 module "voxelkit_service_secret" "my-secret-name" {
   gcp_projects = var.gcp_projects
-  source = "../helpers/service_secret" 
+  source = "../helpers/service_secret"
   secret_id = "my-secret-name"
 }
 ```
@@ -29,7 +29,6 @@ Finally, create a pull request with all of these changes. Once merged and the Te
 Restart your local development environment to see the new environment variable, redeploy preview or prod services to apply the new variable.
 
 ## Updating secrets
-
 
 ## Local development overrides
 
