@@ -1,0 +1,11 @@
+NEXT
+- prettier
+- unit testing
+- translations system
+- add language to account model
+- add request context (trace, language), carry into api errors
+- add db operations
+- create the route
+
+FUTURE
+- sensitive info in logs redaction

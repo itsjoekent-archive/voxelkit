@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@types/node": "^20.5.9"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.3",
+    "bcryptjs": "^2.4.3",
+    "mongodb": "^6.0.0",
+    "xss": "^1.0.14"
+  }
+}
