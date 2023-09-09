@@ -12,6 +12,7 @@ import { getEnvironment } from '@/lib/secrets';
 
 // TODO: Call Google Translate API
 // TODO: Move to a separate package?
+// TODO: Format files with prettier
 
 async function translationsGenerator(collectionName: string) {
   console.log(`Generating translations for ${collectionName}`);
