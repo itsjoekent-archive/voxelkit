@@ -1,4 +1,4 @@
-import { formatCreateAccountInputData } from '@/formatters/account';
+import { formatCreateAccountInputData } from '@services/formatters/account';
 
 describe('formatCreateAccountInputData', () => {
   it('should return formatted data', async () => {

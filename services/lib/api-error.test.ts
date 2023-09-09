@@ -1,4 +1,4 @@
-import ApiError, { convertJsErrorToApiError } from '@/lib/api-error';
+import ApiError, { convertJsErrorToApiError } from '@services/lib/api-error';
 
 describe('convertJsErrorToApiError', () => {
   it('should return an ApiError', () => {

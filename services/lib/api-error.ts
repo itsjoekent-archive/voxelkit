@@ -1,5 +1,5 @@
-import { LanguageCode } from '@/translations/helpers';
-import { defaultApiErrorRef } from '@/translations/generated/system';
+import { LanguageCode } from '@services/translations/helpers';
+import { defaultApiErrorRef } from '@translations/system';
 
 type ErrorMessage = string | ((language: LanguageCode) => string);
 

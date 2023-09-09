@@ -1,4 +1,4 @@
-import { WithExternalId, WithInternalId } from '@/schema/helpers';
+import { WithExternalId, WithInternalId } from '@services/schema/helpers';
 
 export type Account = {
   avatarUrl: string;
