@@ -13,6 +13,7 @@ import { getEnvironment } from '@/lib/secrets';
 // TODO: Call Google Translate API
 // TODO: Move to Docker Compose service
 // TODO: Move to a separate package
+// TODO: Don't commit generated files
 // TODO: Format files with prettier
 // TODO: Only generate ref for phrases with variables ?
 // TODO: Docs
