@@ -1,11 +1,16 @@
+import { LanguageCode } from '@/translations/helpers';
+import { defaultApiErrorRef } from '@/translations/generated/system';
+
+type ErrorMessage = string | ((language: LanguageCode) => string);
+
 type ApiErrorContext = {
   httpCode?: number;
-  publicErrorMessage?: string;
+  publicErrorMessage?: ErrorMessage;
 };
 
 export const ApiErrorName = 'ApiError';
 
-export function convertNodeErrorToApiError(
+export function convertJsErrorToApiError(
   error: any,
   context?: ApiErrorContext | ApiErrorContext['httpCode']
 ) {
@@ -19,14 +24,15 @@ export function convertNodeErrorToApiError(
 
 export default class ApiError extends Error {
   public readonly httpCode: NonNullable<ApiErrorContext['httpCode']>;
-  public readonly publicErrorMessage: NonNullable<
-    ApiErrorContext['publicErrorMessage']
-  >;
+  private readonly publicErrorMessage: ErrorMessage;
+
   constructor(
-    message: string,
+    message: ErrorMessage,
     _context?: ApiErrorContext | ApiErrorContext['httpCode']
   ) {
-    super(message);
+    const baseMessage =
+      typeof message === 'function' ? message('en-us') : message;
+    super(baseMessage);
     Object.setPrototypeOf(this, ApiError.prototype);
 
     this.name = ApiErrorName;
@@ -41,9 +47,14 @@ export default class ApiError extends Error {
 
     this.publicErrorMessage =
       context?.publicErrorMessage ||
-      message ||
-      // @FUTURE_TRANSLATE
-      'Unexpected server error, sorry about that! Some highly qualified VoxelKit engineers have been dispatched.';
+      (this.httpCode < 500 ? message : null) ||
+      defaultApiErrorRef();
+  }
+
+  getPublicErrorMessage(language: LanguageCode) {
+    return typeof this.publicErrorMessage === 'function'
+      ? this.publicErrorMessage(language)
+      : this.publicErrorMessage;
   }
 
   toString() {

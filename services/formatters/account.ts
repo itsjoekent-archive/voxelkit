@@ -1,7 +1,8 @@
 import bcrypt from 'bcryptjs';
 import xss from 'xss';
-import { convertNodeErrorToApiError } from '@/lib/api-error';
+import { convertJsErrorToApiError } from '@/lib/api-error';
 import { Account, CreateAccountInputs } from '@/schema/account';
+import { failedToCreateAccountRef } from '@/translations/generated/accounts';
 
 type FormattedCreateAccountInputs = Omit<CreateAccountInputs, 'password'> &
   Pick<Account, 'passwordHash'>;
@@ -16,17 +17,16 @@ export async function formatCreateAccountInputData(
     const salt = await bcrypt.genSalt(12);
     passwordHash = await bcrypt.hash(password, salt);
   } catch (error) {
-    throw convertNodeErrorToApiError(error, {
+    throw convertJsErrorToApiError(error, {
       httpCode: 500,
-      // @FUTURE_TRANSLATE
-      publicErrorMessage: 'Failed to create account',
+      publicErrorMessage: failedToCreateAccountRef(),
     });
   }
 
   return {
-    firstName: xss(firstName.toLowerCase()),
-    lastName: xss(lastName.toLowerCase()),
-    email: email.toLowerCase(),
+    firstName: xss(firstName.toLowerCase().trim()),
+    lastName: xss(lastName.toLowerCase().trim()),
+    email: email.toLowerCase().trim(),
     passwordHash,
   };
 }

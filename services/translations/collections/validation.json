@@ -1,0 +1,34 @@
+{
+  "MinLength": {
+    "phrase": "{{var}} must be at least {{var}} character{{plural}}",
+    "args": [
+      {
+        "name": "field",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "required": true,
+        "pluralizer": true
+      }
+    ]
+  },
+  "MaxLength": {
+    "phrase": "{{var}} must be less than {{var}} character{{plural}}",
+    "args": [
+      {
+        "name": "field",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "required": true,
+        "pluralizer": true
+      }
+    ]
+  }
+}
