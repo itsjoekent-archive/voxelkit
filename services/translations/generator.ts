@@ -11,8 +11,13 @@ import { LanguageCode } from '@/translations/helpers';
 import { getEnvironment } from '@/lib/secrets';
 
 // TODO: Call Google Translate API
-// TODO: Move to a separate package?
+// TODO: Move to Docker Compose service
+// TODO: Move to a separate package
 // TODO: Format files with prettier
+// TODO: Only generate ref for phrases with variables ?
+// TODO: Docs
+// TODO: Testing on the helper function
+// TODO: Testing on the generator function
 
 async function translationsGenerator(collectionName: string) {
   console.log(`Generating translations for ${collectionName}`);
