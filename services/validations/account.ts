@@ -1,5 +1,5 @@
-import ApiError from '@services/lib/api-error';
-import { isObject } from '@services/validations/helpers';
+import ApiError from '@/lib/api-error';
+import { isObject } from '@/validations/helpers';
 import {
   failedToCreateAccountRef,
   invalidEmailRef,
@@ -9,7 +9,7 @@ import {
   passwordMaxLengthRef,
   passwordMinLengthRef,
   passwordTooCommonRef,
-} from '@translations/accounts';
+} from '@/translations/generated/accounts';
 
 export function isValidName(name: any): boolean {
   if (typeof name !== 'string') {

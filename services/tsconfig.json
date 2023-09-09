@@ -10,8 +10,7 @@
     "declaration": true,
     "baseUrl": ".",
     "paths": {
-      "@services/*": ["./*"],
-      "@translations/*": ["./translations/generated/*"]
+      "@/*": ["./*"]
     },
     "types": ["vitest/globals"]
   }

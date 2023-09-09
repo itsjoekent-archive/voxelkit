@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import xss from 'xss';
-import { convertJsErrorToApiError } from '@services/lib/api-error';
-import { Account, CreateAccountInputs } from '@services/schema/account';
-import { failedToCreateAccountRef } from '@translations/accounts';
+import { convertJsErrorToApiError } from '@/lib/api-error';
+import { Account, CreateAccountInputs } from '@/schema/account';
+import { failedToCreateAccountRef } from '@/translations/generated/accounts';
 
 type FormattedCreateAccountInputs = Omit<CreateAccountInputs, 'password'> &
   Pick<Account, 'passwordHash'>;

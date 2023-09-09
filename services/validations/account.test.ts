@@ -3,7 +3,7 @@ import {
   isValidEmail,
   isValidPassword,
   isValidCreateAccountInput,
-} from '@services/validations/account';
+} from '@/validations/account';
 
 describe('isValidName', () => {
   it('should return true if name is valid', () => {

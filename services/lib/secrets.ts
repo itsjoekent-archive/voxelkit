@@ -1,6 +1,6 @@
-import ApiError from '@services/lib/api-error';
+import ApiError from '@/lib/api-error';
 
-function getValueAndFailIfMissing(key: string): string | never {
+export function getValueAndFailIfMissing(key: string): string | never {
   const value = process.env[key];
   if (!value) {
     throw new ApiError(`Missing env var ${key}`, 500);
@@ -9,6 +9,10 @@ function getValueAndFailIfMissing(key: string): string | never {
   return value;
 }
 
-export function getMongoDbUri() {
-  return getValueAndFailIfMissing('MONGODB_URI');
+export function getEnvironment() {
+  return getValueAndFailIfMissing('ENVIRONMENT');
+}
+
+export function getServicesMongoDbUri() {
+  return getValueAndFailIfMissing('SERVICES_MONGODB_URI');
 }
