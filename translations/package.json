@@ -1,0 +1,24 @@
+{
+  "name": "@voxelkit/translations",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "compile": "npx ts-node -r tsconfig-paths/register generator.ts && tsc",
+    "compile:watch": "WATCH=true npx ts-node -r tsconfig-paths/register generator.ts",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "change-case": "^4.1.2",
+    "chokidar": "^3.5.3",
+    "dedent": "^1.5.1",
+    "json-schema-to-typescript": "^13.1.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "vitest": "^0.34.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "mongodb": "^6.0.0",
+    "xss": "^1.0.14"
+  }
+}

@@ -1,5 +1,4 @@
-import { LanguageCode } from '@/translations/helpers';
-import { defaultApiErrorRef } from '@/translations/generated/system';
+import { LanguageCode, defaultApiErrorRef } from '@voxelkit/translations';
 
 type ErrorMessage = string | ((language: LanguageCode) => string);
 

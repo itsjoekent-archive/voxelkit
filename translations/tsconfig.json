@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "target": "es5",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "types": ["vitest/globals"],
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/*"]
+}

@@ -9,5 +9,11 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  }
+  },
+  "dependencies": {
+    "typescript": "^5.2.2"
+  },
+  "workspaces": [
+    "translations"
+  ]
 }

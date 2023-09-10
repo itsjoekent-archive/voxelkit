@@ -9,7 +9,7 @@ import {
   passwordMaxLengthRef,
   passwordMinLengthRef,
   passwordTooCommonRef,
-} from '@/translations/generated/accounts';
+} from '@voxelkit/translations';
 
 export function isValidName(name: any): boolean {
   if (typeof name !== 'string') {

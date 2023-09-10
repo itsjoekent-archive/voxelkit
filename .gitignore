@@ -127,3 +127,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Translation compiled files
+translations/src/index.ts
+translations/src/generated
+translations/dist
