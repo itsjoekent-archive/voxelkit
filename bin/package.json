@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "await-spawn": "^4.0.2",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "execa": "^8.0.1"
   }
 }

@@ -1,1 +1,3 @@
-# ...hello!
+translations/dist
+translations/src/index.ts
+translations/src/generated

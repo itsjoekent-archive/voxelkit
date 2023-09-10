@@ -1,7 +1,7 @@
-const dotenv = require('dotenv');
-const fs = require('fs');
-const path = require('path');
-const spawn = require('await-spawn');
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+import { $, execa } from 'execa';
 
 const DEV_PROJECT_ID = '976770207038';
 
@@ -26,19 +26,13 @@ const DEV_PROJECT_ID = '976770207038';
       }
     }
 
+    await $`gcloud config set project ${DEV_PROJECT_ID}`;
+
     let gcpLocalSecretList = [];
 
     try {
-      gcpSecretsListCommandJson = await spawn('gcloud', [
-        'secrets',
-        'list',
-        '--format',
-        'json',
-        '--project',
-        DEV_PROJECT_ID,
-        '--page-size',
-        'unlimited',
-      ]);
+      const { stdout: gcpSecretsListCommandJson } =
+        await $`gcloud secrets list --format json --project ${DEV_PROJECT_ID} --page-size unlimited`;
       gcpLocalSecretList = JSON.parse(gcpSecretsListCommandJson.toString());
     } catch (error) {
       console.error(
@@ -52,28 +46,38 @@ const DEV_PROJECT_ID = '976770207038';
 
     for (const gcpSecret of gcpLocalSecretList) {
       const gcpSecretName = gcpSecret.name.split('/').pop();
-      const gcpSecretValue = await spawn('gcloud', [
-        'secrets',
-        'versions',
-        'access',
-        'latest',
-        '--secret',
-        gcpSecretName,
-        '--project',
-        DEV_PROJECT_ID,
-      ]);
+      const { stdout: gcpSecretValue } =
+        await $`gcloud secrets versions access latest --secret ${gcpSecretName} --project ${DEV_PROJECT_ID}`;
       gcpLocalSecrets[gcpSecretName] = gcpSecretValue.toString().trim();
     }
 
-    const secrets = {
+    const env = {
       ...gcpLocalSecrets,
       ...localDefaults,
       ...localOverrides,
     };
 
-    console.log(secrets);
+    const processConfig = {
+      all: true,
+      cwd: rootDirectory,
+      env,
+    };
 
-    // TODO: build and run docker compose, injecting merged secrets
+    // Compile libraries before launching dependents
+    await Promise.all([
+      execa('npm', ['run', 'compile'], {
+        ...processConfig,
+        cwd: path.join(rootDirectory, 'translations'),
+      }).pipeAll(process.stdout),
+    ]);
+
+    // Launch long-running processes
+    await Promise.all([
+      execa('npm', ['run', 'compile:watch'], {
+        ...processConfig,
+        cwd: path.join(rootDirectory, 'translations'),
+      }).pipeAll(process.stdout),
+    ]);
   } catch (error) {
     console.error(error);
     process.exit(1);
