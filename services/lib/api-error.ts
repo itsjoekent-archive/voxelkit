@@ -58,16 +58,9 @@ export default class ApiError extends Error {
 
   toString() {
     // TODO: Strip out any sensitive info from 'message'
+    // - any sensitive environment variables
+    // - json regex match account.password and other sensitive fields
+    // TODO: add request tracing id
     return `${this.name}: ${this.message}`;
-  }
-
-  logFormat() {
-    // TODO: Strip out any sensitive info from 'message'
-    return {
-      name: this.name,
-      stack: this.stack?.toString(),
-      message: this.message,
-      httpCode: this.httpCode,
-    };
   }
 }

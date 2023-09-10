@@ -1,7 +1,5 @@
 NEXT
 
-- connect to google translate api
-- translations dev/ci function
 - add language to account model
 - add request context (trace, language), carry into api errors
 - add db operations
@@ -13,5 +11,6 @@ NEXT
 
 FUTURE
 
+- add request id's to logs + api error
 - sensitive info in logs redaction
 - mono repo guidelines
