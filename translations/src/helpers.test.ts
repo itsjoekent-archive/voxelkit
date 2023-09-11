@@ -3,50 +3,50 @@ import { translateCopy } from './helpers';
 describe('translateCopy', () => {
   it('should return a string to a different language', () => {
     const dictionary = {
-      'en-us': 'Hello!',
-      'es-mx': '¡Hola!',
+      'en-US': 'Hello!',
+      'es-MX': '¡Hola!',
     };
 
-    const result = translateCopy(dictionary, 'es-mx');
+    const result = translateCopy(dictionary, 'es-MX');
     expect(result).toEqual('¡Hola!');
   });
 
   it('should return a string to a different language plural', () => {
     const dictionary = {
-      'en-us': 'en-us singular',
-      'en-us-plural': 'en-us plural',
-      'es-mx': 'es-mx singular',
-      'es-mx-plural': 'es-mx plural',
+      'en-US': 'en-US singular',
+      'en-US-plural': 'en-US plural',
+      'es-MX': 'es-MX singular',
+      'es-MX-plural': 'es-MX plural',
     };
 
     const result = translateCopy(
       dictionary,
-      'es-mx',
+      'es-MX',
       { condition: 2 },
       ['condition'],
       'condition'
     );
-    expect(result).toEqual('es-mx plural');
+    expect(result).toEqual('es-MX plural');
   });
 
   it('should return the fallback language', () => {
     const dictionary = {
-      'en-us': 'Hello!',
+      'en-US': 'Hello!',
     };
 
-    const result = translateCopy(dictionary, 'es-mx');
+    const result = translateCopy(dictionary, 'es-MX');
     expect(result).toEqual('Hello!');
   });
 
   it('should return the fallback language plural', () => {
     const dictionary = {
-      'en-us': 'singular',
-      'en-us-plural': 'plural',
+      'en-US': 'singular',
+      'en-US-plural': 'plural',
     };
 
     const result = translateCopy(
       dictionary,
-      'es-mx',
+      'es-MX',
       { condition: 2 },
       ['condition'],
       'condition'
@@ -56,13 +56,13 @@ describe('translateCopy', () => {
 
   it('should replace variables', () => {
     const dictionary = {
-      'en-us': 'Hello {{var}} {{var}}!',
-      'es-mx': '¡Hola {{var}} {{var}}!',
+      'en-US': 'Hello {{var}} {{var}}!',
+      'es-MX': '¡Hola {{var}} {{var}}!',
     };
 
     const result = translateCopy(
       dictionary,
-      'es-mx',
+      'es-MX',
       { firstName: 'Test', lastName: 'User' },
       ['firstName', 'lastName']
     );

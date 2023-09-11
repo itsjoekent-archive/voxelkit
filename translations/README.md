@@ -65,15 +65,15 @@ console.log(translationFunction());
 
 ### Supported Languages
 
-- `en-us` (default)
-- `es-mx`
+- `en-US` (default)
+- `es-MX`
 
 To specify the language,
 
 ```ts
 import { exampleTranslationFunction } from '@voxelkit/translations';
 
-console.log(exampleTranslationFunction('es-mx'));
+console.log(exampleTranslationFunction('es-MX'));
 ```
 
 You can also use the `LanguageCode` type and `languages` list to enforce what language strings are accepted,

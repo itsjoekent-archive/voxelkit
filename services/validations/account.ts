@@ -1,4 +1,5 @@
 import ApiError from '@/lib/api-error';
+import { CreateAccountInputs } from '@/schema/account';
 import { isObject } from '@/validations/helpers';
 import {
   failedToCreateAccountRef,
@@ -70,7 +71,9 @@ export function isValidPassword(password: any): boolean {
   return true;
 }
 
-export function isValidCreateAccountInput(createAccountInput: any): boolean {
+export async function isValidCreateAccountInput(
+  createAccountInput: any
+): Promise<boolean> {
   if (!isObject(createAccountInput)) {
     throw new ApiError(failedToCreateAccountRef(), 400);
   }

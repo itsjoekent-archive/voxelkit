@@ -1,9 +1,9 @@
 NEXT
 
-- add language to account model
-- add request context (trace, language), carry into api errors
+- add email unique validation
 - add db operations
-- create the create account route
+- create the response formatters
+- create the api router and express server
 - create the account field validation routes
 - create the docker image and compose file
 - create the gcp infra
@@ -14,3 +14,4 @@ FUTURE
 - add request id's to logs + api error
 - sensitive info in logs redaction
 - mono repo guidelines
+- generate openapi/swagger spec

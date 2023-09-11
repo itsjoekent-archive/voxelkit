@@ -54,29 +54,29 @@ async function translationsGenerator(collectionName: string) {
       continue;
     }
 
-    const dictionary: { 'en-us': string } & Partial<
+    const dictionary: { 'en-US': string } & Partial<
       Record<LanguageCode | `${LanguageCode}-plural`, string>
     > = {
-      'en-us': phrase,
+      'en-US': phrase,
     };
 
     if (phrase.includes('{{plural}}')) {
-      dictionary['en-us'] = phrase.replaceAll('{{plural}}', '');
-      dictionary['en-us-plural'] = phrase.replaceAll('{{plural}}', "'s");
+      dictionary['en-US'] = phrase.replaceAll('{{plural}}', '');
+      dictionary['en-US-plural'] = phrase.replaceAll('{{plural}}', "'s");
     }
 
     for (const language of languages) {
-      if (language === 'en-us') continue;
+      if (language === 'en-US') continue;
 
       const translation = await translate.translate(
-        dictionary['en-us'],
+        dictionary['en-US'],
         language
       );
       dictionary[language] = translation[0];
 
-      if (dictionary['en-us-plural']) {
+      if (dictionary['en-US-plural']) {
         const pluralTranslation = await translate.translate(
-          dictionary['en-us-plural'],
+          dictionary['en-US-plural'],
           language
         );
         dictionary[`${language}-plural`] = pluralTranslation[0];
@@ -89,7 +89,7 @@ async function translationsGenerator(collectionName: string) {
 
     if (totalVars === 0) {
       const translationFunction = dedent`
-        export function ${functionName}(language: LanguageCode = 'en-us'): string {
+        export function ${functionName}(language: LanguageCode = 'en-US'): string {
           return translateCopy(
             ${dictionaryStringified},
             language,
@@ -146,7 +146,7 @@ async function translationsGenerator(collectionName: string) {
       : null;
 
     const translationFunction = dedent`
-      export function ${functionName}(language: LanguageCode = 'en-us', args: ${tsTitle}): string {
+      export function ${functionName}(language: LanguageCode = 'en-US', args: ${tsTitle}): string {
         return translateCopy<${tsTitle}>(
           ${dictionaryStringified},
           language,

@@ -1,6 +1,6 @@
-export type LanguageCode = 'en-us' | 'es-mx';
+export type LanguageCode = 'en-US' | 'es-MX';
 
-export const languages: LanguageCode[] = ['en-us', 'es-mx'];
+export const languages: LanguageCode[] = ['en-US', 'es-MX'];
 
 export function translateCopy<ArgsType extends Record<string, any>>(
   dictionary: Record<string, string>,
@@ -16,7 +16,7 @@ export function translateCopy<ArgsType extends Record<string, any>>(
 
   let dictionaryKey = isPlural ? `${language}-plural` : language;
   if (!dictionary[dictionaryKey]) {
-    dictionaryKey = isPlural ? `en-us-plural` : 'en-us';
+    dictionaryKey = isPlural ? `en-US-plural` : 'en-US';
   }
 
   let copy = dictionary[dictionaryKey];

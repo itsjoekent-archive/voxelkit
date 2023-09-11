@@ -10,7 +10,7 @@ type FormattedCreateAccountInputs = Omit<CreateAccountInputs, 'password'> &
 export async function formatCreateAccountInputData(
   createAccountInput: CreateAccountInputs
 ): Promise<FormattedCreateAccountInputs> {
-  const { firstName, lastName, email, password } = createAccountInput;
+  const { firstName, lastName, email, password, language } = createAccountInput;
   let passwordHash: Account['passwordHash'];
 
   try {
@@ -28,5 +28,6 @@ export async function formatCreateAccountInputData(
     lastName: xss(lastName.toLowerCase().trim()),
     email: email.toLowerCase().trim(),
     passwordHash,
+    language,
   };
 }
