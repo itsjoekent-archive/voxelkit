@@ -5,7 +5,6 @@ NEXT
 - create the response formatters
 - create the api router and express server
 - create the account field validation routes
-- create the docker image and compose file
 - create the gcp infra
 - create the actions pipelines
 

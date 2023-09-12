@@ -5,8 +5,7 @@
     "prettier": "3.0.3"
   },
   "scripts": {
-    "prepare": "husky install",
-    "start": "cd bin && node start.mjs"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

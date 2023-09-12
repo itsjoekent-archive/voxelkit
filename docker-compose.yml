@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  local-development:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+    command: start.mjs
+    volumes:
+      - ~/.config/gcloud:/root/.config/gcloud

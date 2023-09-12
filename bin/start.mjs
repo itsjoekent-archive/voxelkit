@@ -7,6 +7,8 @@ const DEV_PROJECT_ID = '976770207038';
 
 (async function start() {
   try {
+    console.log('Starting voxelkit...');
+
     const rootDirectory = process.cwd().endsWith('bin')
       ? path.join(process.cwd(), '../')
       : process.cwd();
@@ -63,20 +65,21 @@ const DEV_PROJECT_ID = '976770207038';
       env,
     };
 
+    function runCommandInSubfolder(subfolder, command, commandArguments) {
+      return execa(command, commandArguments, {
+        ...processConfig,
+        cwd: path.join(rootDirectory, subfolder),
+      }).pipeAll(process.stdout);
+    }
+
     // Compile libraries before launching dependents
     await Promise.all([
-      execa('npm', ['run', 'compile'], {
-        ...processConfig,
-        cwd: path.join(rootDirectory, 'translations'),
-      }).pipeAll(process.stdout),
+      runCommandInSubfolder('translations', 'npm', ['run', 'build']),
     ]);
 
     // Launch long-running processes
     await Promise.all([
-      execa('npm', ['run', 'compile:watch'], {
-        ...processConfig,
-        cwd: path.join(rootDirectory, 'translations'),
-      }).pipeAll(process.stdout),
+      runCommandInSubfolder('translations', 'npm', ['run', 'build:watch']),
     ]);
   } catch (error) {
     console.error(error);
