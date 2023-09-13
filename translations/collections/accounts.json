@@ -4,6 +4,16 @@
   "nameMinLength": "Name must be at least 1 character long",
   "nameMaxLength": "Name must be at most 50 characters long",
   "invalidEmail": "Email must be a valid email address",
+  "emailInUse": {
+    "phrase": "{{var}} is already in use",
+    "args": [
+      {
+        "name": "email",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
   "passwordMinLength": "Password must be at least 8 characters long",
   "passwordMaxLength": "Password must be at most 2056 characters long",
   "passwordTooCommon": "Password is too common, use a stronger password!"

@@ -4,6 +4,10 @@ import { convertJsErrorToApiError } from '@/lib/api-error';
 import { Account, CreateAccountInputs } from '@/schema/account';
 import { failedToCreateAccountRef } from '@voxelkit/translations';
 
+export function formatEmail(email: string): string {
+  return email.toLowerCase().trim();
+}
+
 type FormattedCreateAccountInputs = Omit<CreateAccountInputs, 'password'> &
   Pick<Account, 'passwordHash'>;
 
@@ -26,7 +30,7 @@ export async function formatCreateAccountInputData(
   return {
     firstName: xss(firstName.toLowerCase().trim()),
     lastName: xss(lastName.toLowerCase().trim()),
-    email: email.toLowerCase().trim(),
+    email: formatEmail(email),
     passwordHash,
     language,
   };

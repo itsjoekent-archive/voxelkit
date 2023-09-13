@@ -1,8 +1,9 @@
 import type { Request, Response } from 'express';
 import { formatCreateAccountInputData } from '@/formatters/account';
-import { isValidCreateAccountInput } from '@/validations/account';
-import { CreateAccountInputs } from '@/schema/account';
 import getRequestLanguage from '@/lib/get-request-language';
+import { insertAccount } from '@/queries/account';
+import { CreateAccountInputs } from '@/schema/account';
+import { isValidCreateAccountInput } from '@/validations/account';
 
 export default async function createAccount(
   request: Request,
@@ -19,7 +20,11 @@ export default async function createAccount(
   const createAccountInputsFormatted =
     await formatCreateAccountInputData(createAccountInputs);
 
-  // TODO: Write to database
+  const account = await insertAccount({
+    avatarUrl: '',
+    ...createAccountInputsFormatted,
+  });
+
   // TODO: Format database object to response
 
   response.status(200).json({

@@ -1,7 +1,8 @@
 import ApiError from '@/lib/api-error';
-import { CreateAccountInputs } from '@/schema/account';
+import { getAccountForEmail } from '@/queries/account';
 import { isObject } from '@/validations/helpers';
 import {
+  emailInUseRef,
   failedToCreateAccountRef,
   invalidEmailRef,
   invalidNameRef,
@@ -28,7 +29,7 @@ export function isValidName(name: any): boolean {
   return true;
 }
 
-export function isValidEmail(email: any): boolean {
+export async function isValidEmail(email: any): Promise<boolean> {
   if (typeof email !== 'string') {
     throw new ApiError(invalidEmailRef(), 400);
   }
@@ -37,6 +38,15 @@ export function isValidEmail(email: any): boolean {
   // https://stackoverflow.com/a/9204568
   if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
     throw new ApiError(invalidEmailRef(), 400);
+  }
+
+  if (email.length > 1024) {
+    throw new ApiError(invalidEmailRef(), 400);
+  }
+
+  const matchingAccount = await getAccountForEmail(email);
+  if (matchingAccount) {
+    throw new ApiError(emailInUseRef({ email }), 400);
   }
 
   return true;
@@ -80,10 +90,12 @@ export async function isValidCreateAccountInput(
 
   const { firstName, lastName, email, password } = createAccountInput;
 
+  const isValidEmailResult = await isValidEmail(email);
+
   return (
     isValidName(firstName) &&
     isValidName(lastName) &&
-    isValidEmail(email) &&
-    isValidPassword(password)
+    isValidPassword(password) &&
+    isValidEmailResult
   );
 }

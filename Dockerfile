@@ -13,11 +13,11 @@ RUN cd translations && npm ci --ignore-scripts
 
 FROM node:${NODE_VERSION}-bookworm as local-development
 
-WORKDIR /usr/voxelkit
-COPY --from=base /usr/voxelkit .
-
 ENV CLOUDSDK_INSTALL_DIR /usr/local/gcloud/
 
 RUN curl -sSL https://sdk.cloud.google.com | bash
 
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
+
+WORKDIR /usr/voxelkit
+COPY --from=base /usr/voxelkit .

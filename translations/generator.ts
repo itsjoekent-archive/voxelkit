@@ -152,7 +152,7 @@ async function translationsGenerator(collectionName: string) {
           language,
           args,
           ${JSON.stringify(argsOrder)},
-          ${JSON.stringify(pluralizer)},
+          ${JSON.stringify(pluralizer || undefined)},
         );
       }
 
@@ -209,8 +209,9 @@ async function writeIndexFile(collectionNames: string[]) {
   watch(collectionsDirectory).on('all', async (event, filepath) => {
     if (event === 'addDir') return;
     const collectionName = filepath.split('/').pop()?.replace('.json', '');
+    console.log(collectionName);
     if (collectionName) {
-      translationsGenerator(collectionName);
+      await translationsGenerator(collectionName);
       await writeIndexFile(allCollectionNames);
     }
   });

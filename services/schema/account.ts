@@ -8,8 +8,8 @@ export type Account = {
   email: string;
   language: LanguageCode;
   passwordHash: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type AccountWithInternalId = WithInternalId<Account>;
