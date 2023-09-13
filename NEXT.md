@@ -25,6 +25,12 @@ NEXT
 - create a `test.sh` file to build docker (ignore bin/local stage), run the bin/testing script
 - maybe move `start.sh` and `test.sh` to bin, update readme
 
+4. add migration scripts to bin/all
+
+- add an account migration script
+- where should migrations live? should they live in `services/` and get compiled to bin?
+- add a db init + seed scripts to `bin/` ?
+
 FUTURE
 
 - run tests in docker setup
