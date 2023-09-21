@@ -1,10 +1,13 @@
 #!/bin/bash
 
-node_version="$(cat .nvmrc | sed 's/v//')"
+MONGO_VERSION="$(cat infrastructure/requirements/mongodb)"
+NODE_VERSION="$(cat .nvmrc | sed 's/v//')"
 
-docker build -t voxelkit \
-  --build-arg NODE_VERSION="$node_version" \
-  --target testing \
-  .
+export MONGO_VERSION="$MONGO_VERSION"
 
-docker run --rm voxelkit bin/testing/unit-test.mjs
+docker build -t voxelkit-core \
+  -f infrastructure/images/Dockerfile.core \
+  --build-arg NODE_VERSION="$NODE_VERSION" .
+
+docker compose -f infrastructure/images/docker-compose.ci.yml build
+docker compose -f infrastructure/images/docker-compose.ci.yml up --remove-orphans --abort-on-container-exit

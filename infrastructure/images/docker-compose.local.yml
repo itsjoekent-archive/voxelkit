@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  local-development:
+    build:
+      context: ../../
+      dockerfile: infrastructure/images/Dockerfile.core-local
+    command: bin/local/start.mjs
+    volumes:
+      - ~/.config/gcloud:/root/.config/gcloud
+      - ${PWD}/translations:/usr/voxelkit/translations
+      - ${PWD}/services:/usr/voxelkit/services
+
+  services-db:
+    image: mongo:${MONGO_VERSION}
+    ports:
+      - 27017:27017
+    volumes:
+      - ../../.compose-data/services-db:/data/services-db

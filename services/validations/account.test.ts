@@ -24,7 +24,7 @@ describe('isValidName', () => {
 });
 
 describe('isValidEmail', () => {
-  it('should return true if email is valid', () => {
+  it('should return true if email is valid', async () => {
     expect(isValidEmail('test@test.com')).toBe(true);
     expect(isValidEmail('HEY@GMAIL.COM')).toBe(true);
     expect(isValidEmail('HEY+2@GMAIL.COM')).toBe(true);

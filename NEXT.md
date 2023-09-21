@@ -12,19 +12,7 @@ NEXT
 - create the gcp infra with terraform
 - create the deploy actions pipelines
 
-- fix mongodb local run (or just use real mongo image in a new multi stage??)
-- what if we did a `docker build -t voxelkit-base .` and then had images like `Dockerfile.local-development` and `Dockerfile.unit-testing` which did `FROM voxelkit-base` ... then we'd skip needing to build unnecessary stages.
-- should we put the docker compose + dockerfiles in a new directory? eg: `infrastructure/containers` ?
-- should we create a file for keeping track of the versions used for mongo and other software (eg redis), could be `infrastructure/versions/mongo` or something
-
-3. create a test script in bin
-
-- launch the mongodb in memory server
-- read a `.env.test` file
-- launch all test processes with correct env
-- determine between one off / watch
-- create a `test.sh` file to build docker (ignore bin/local stage), run the bin/testing script
-- maybe move `start.sh` and `test.sh` to bin, update readme
+- Move env files to to `infrastructure` ?
 
 4. add migration scripts to bin/all
 

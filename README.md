@@ -29,4 +29,7 @@ $ nvm install && nvm use
 # Run the start script to launch everything via Docker Compose.
 # Going forward, this is the only command you need to run.
 $ ./bin/start.sh
+
+# To launch tests, run the following command,
+$ ./bin/unit-test.sh
 ```

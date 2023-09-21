@@ -1,0 +1,15 @@
+# syntax=docker.io/docker/dockerfile:1
+
+# Dot seperated version number, e.g. 18.17.0
+# Do not include a 'v' prefix
+ARG NODE_VERSION
+
+FROM node:${NODE_VERSION}-bullseye as base
+
+WORKDIR /usr/voxelkit
+
+COPY ./ /usr/voxelkit
+
+RUN npm ci --ignore-scripts
+RUN cd services && npm ci --ignore-scripts
+RUN cd translations && npm ci --ignore-scripts

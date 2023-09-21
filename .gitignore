@@ -132,3 +132,6 @@ dist
 translations/src/index.ts
 translations/src/generated
 translations/dist
+
+# Docker Compose volumes
+.compose-data/

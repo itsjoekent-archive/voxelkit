@@ -2,9 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 import { $, execa } from 'execa';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
-// TODO: Check if watch mode
+// TODO: Check if watch mode or not
 
 (async function start() {
   try {
@@ -22,13 +21,9 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
       fs.readFileSync(path.join(rootDirectory, '.env.test'))
     );
 
-    const servicesMongod = await MongoMemoryServer.create();
-    const servicesMongoUri = servicesMongod.getUri();
-
     const env = {
       ...localDefaults,
       ...testEnv,
-      SERVICES_MONGO_URI: servicesMongoUri,
     };
 
     const processConfig = {
@@ -43,6 +38,8 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
         cwd: path.join(rootDirectory, subfolder),
       }).pipeAll(process.stdout);
     }
+
+    await runCommandInSubfolder('translations', 'ls', ['-la']);
 
     await Promise.all([
       runCommandInSubfolder('translations', 'npm', ['test']),
