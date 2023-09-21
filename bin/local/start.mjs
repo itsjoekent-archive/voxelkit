@@ -10,7 +10,7 @@ const DEV_PROJECT_ID = '976770207038';
     console.log('Starting voxelkit...');
 
     const rootDirectory = process.cwd().endsWith('bin')
-      ? path.join(process.cwd(), '../')
+      ? path.join(process.cwd(), '../../')
       : process.cwd();
 
     const localDefaults = dotenv.parse(

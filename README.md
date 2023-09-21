@@ -28,5 +28,5 @@ $ nvm install && nvm use
 
 # Run the start script to launch everything via Docker Compose.
 # Going forward, this is the only command you need to run.
-$ ./start.sh
+$ ./bin/start.sh
 ```

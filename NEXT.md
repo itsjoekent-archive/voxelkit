@@ -1,20 +1,21 @@
 NEXT
 
-- fix tests to work with mongodb mock
+- confirm tests still work
+  - run tests serially that need DB operations
+  - where do we clear the DB? maybe we spy the mongo import and if its imported by code invoked by a test, we know to clean up after the test run? the mock would just return the original lib/mongo import
 - create the response formatters
 - create the api router and express server
 - add the server to bin/start
+- make sure service ports are exposed
+- add mongo to docker-compose
 - create the account field validation routes
 - create the gcp infra with terraform
 - create the deploy actions pipelines
 
-1. install 'mongodb-memory-server' in bin/
-2. create a 'bin' stage in the dockerfile
-
-- make sure the right binary is configured, https://github.com/nodkz/mongodb-memory-server?tab=readme-ov-file#configuring-which-mongod-binary-to-use
-- should bin get renamed? since it's local specific?
-- maybe make a 'local' + 'remote' + 'all' subfolder pattern?
-- base -> bin/all -> bin/testing -> bin/local
+- fix mongodb local run (or just use real mongo image in a new multi stage??)
+- what if we did a `docker build -t voxelkit-base .` and then had images like `Dockerfile.local-development` and `Dockerfile.unit-testing` which did `FROM voxelkit-base` ... then we'd skip needing to build unnecessary stages.
+- should we put the docker compose + dockerfiles in a new directory? eg: `infrastructure/containers` ?
+- should we create a file for keeping track of the versions used for mongo and other software (eg redis), could be `infrastructure/versions/mongo` or something
 
 3. create a test script in bin
 
