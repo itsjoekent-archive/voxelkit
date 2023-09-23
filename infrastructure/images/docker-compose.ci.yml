@@ -14,7 +14,9 @@ services:
 
   services-db:
     image: mongo:${MONGO_VERSION}
+    container_name: 'services-db'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
     ports:
       - 27017:27017
-    logging:
-      driver: none

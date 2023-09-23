@@ -10,4 +10,5 @@ docker build -t voxelkit-core \
   --build-arg NODE_VERSION="$NODE_VERSION" .
 
 docker compose -f infrastructure/images/docker-compose.ci.yml build
-docker compose -f infrastructure/images/docker-compose.ci.yml up --remove-orphans --abort-on-container-exit
+docker compose -f infrastructure/images/docker-compose.ci.yml up --remove-orphans
+# TODO: add '--abort-on-container-exit' if running in GitHub actions

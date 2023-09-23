@@ -1,5 +1,5 @@
 import { formatEmail } from '@/formatters/account';
-import { db } from '@/lib/mongo';
+import getDb from '@/lib/mongo';
 import {
   Account,
   AccountWithInternalId,
@@ -9,6 +9,7 @@ import {
 export async function getAccountForEmail(
   email: string
 ): Promise<AccountWithInternalId | null> {
+  const db = await getDb();
   const account = await db
     .collection<AccountWithInternalId>('accounts')
     .findOne({ email: formatEmail(email) });
@@ -20,6 +21,7 @@ type InsertAccountFields = Omit<Account, 'updatedAt' | 'createdAt'>;
 export async function insertAccount(
   account: InsertAccountFields
 ): Promise<AccountWithInternalId> {
+  const db = await getDb();
   const document = {
     ...account,
     createdAt: Date.now(),

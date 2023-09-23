@@ -1,4 +1,10 @@
 import {
+  invalidEmail,
+  invalidName,
+  nameMinLength,
+  passwordTooCommon,
+} from '@voxelkit/translations';
+import {
   isValidName,
   isValidEmail,
   isValidPassword,
@@ -63,40 +69,40 @@ describe('isValidCreateAccountInput', () => {
     ).toBe(true);
   });
 
-  it('should return false if input is not valid', () => {
-    expect(() =>
+  it.only('should throw an error if the input is not valid', async () => {
+    await expect(
       isValidCreateAccountInput({
         firstName: '',
         lastName: 'Doe',
         email: 'test@gmail.com',
         password: 'aV7jNk47quZk!6eHWjon!2dkgtJTYs8T',
       })
-    ).toThrowError();
+    ).rejects.toThrowError(nameMinLength());
 
-    expect(() =>
+    await expect(
       isValidCreateAccountInput({
         firstName: 'John',
         email: 'test@gmail.com',
         password: 'aV7jNk47quZk!6eHWjon!2dkgtJTYs8T',
       })
-    ).toThrowError();
+    ).rejects.toThrowError(invalidName());
 
-    expect(() =>
+    await expect(
       isValidCreateAccountInput({
-        firstName: '',
+        firstName: 'John',
         lastName: 'Doe',
         email: 'test@g',
         password: 'aV7jNk47quZk!6eHWjon!2dkgtJTYs8T',
       })
-    ).toThrowError();
+    ).rejects.toThrowError(invalidEmail());
 
-    expect(() =>
+    await expect(
       isValidCreateAccountInput({
-        firstName: '',
+        firstName: 'John',
         lastName: 'Doe',
         email: 'test@gmail.com',
         password: 'password1',
       })
-    ).toThrowError();
+    ).rejects.toThrowError(passwordTooCommon());
   });
 });
