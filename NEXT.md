@@ -1,9 +1,10 @@
 NEXT
 
-- confirm tests still work
-  - run tests serially that need DB operations
-  - where do we clear the DB? maybe we spy the mongo import and if its imported by code invoked by a test, we know to clean up after the test run? the mock would just return the original lib/mongo import
-  - create a services/test/factory folder to generate mock accounts for testing ?
+- get tests working again
+
+  - find untested code?
+  - setup test coverage?
+
 - create the response formatters
 - create the api router and express server
 - add the server to bin/start
@@ -21,9 +22,14 @@ NEXT
 - add an account migration script ?
 - where should migrations live? should they live in `services/` and get compiled to bin ?
 
+- create a services/test/factory folder to generate mock accounts for testing
+- create services/test/db function to setup test database
+- argument to control whether migrations are run
+- edit env for the services database value?
+- clean up after test run
+
 FUTURE
 
-- run tests in docker setup
 - add request id's to logs + api error
 - sensitive info in logs redaction
   - add prefix to sensitive fields (eg: for passwords, `pw_${hash}`)
@@ -31,4 +37,4 @@ FUTURE
 - mono repo guidelines
 - generate openapi/swagger spec
 
-- setup chaos testing (eg: redis is switched off, do services degrade properly), environment specific testing (eg: if in prod mode, are logs filtered out)
+- setup chaos testing (eg: redis is switched off, do services degrade properly), and environment specific testing (eg: if in prod mode, are logs filtered out)
