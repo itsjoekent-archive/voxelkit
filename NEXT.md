@@ -12,24 +12,27 @@ NEXT
 - create the gcp infra with terraform
 - create the deploy actions pipelines
 - create the ci actions for code + terraform
+
 - setup a logger
+
+  - replace console.log calls
+  - create eslint rule ?
 
 - Add toJSON override to ApiError
 - Add more event handlers to mongo ?
 - set mongo timeout based on environment ?
 
 - add migration scripts to bin/all ?
-- add an account migration script ?
 - where should migrations live? should they live in `services/` and get compiled to bin ?
+- add account migration file
 
 - create a services/test/factory folder to generate mock accounts for testing
-- create services/test/db function to setup test database
-- argument to control whether migrations are run
-- edit env for the services database value?
-- clean up after test run
 
 FUTURE
 
+- eslint
+  - can we enforce ordering imports alphabetically?
+  - can we enforce no back ticks, use `@/...` ?
 - add request id's to logs + api error
 - sensitive info in logs redaction
   - add prefix to sensitive fields (eg: for passwords, `pw_${hash}`)

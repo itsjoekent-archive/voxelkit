@@ -16,3 +16,7 @@ export function getEnvironment() {
 export function getServicesMongoDbUri() {
   return getValueAndFailIfMissing('SERVICES_MONGODB_URI');
 }
+
+export function getServicesMongoDbName() {
+  return getValueAndFailIfMissing('SERVICES_MONGODB_DBNAME');
+}

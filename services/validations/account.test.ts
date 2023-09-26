@@ -10,6 +10,8 @@ import {
   isValidPassword,
   isValidCreateAccountInput,
 } from '@/validations/account';
+import accountFactory from '@/test/factory/account';
+import { setupTestDb } from '@/test/helpers/mongo';
 
 describe('isValidName', () => {
   it('should return true if name is valid', () => {
@@ -30,18 +32,25 @@ describe('isValidName', () => {
 });
 
 describe('isValidEmail', () => {
+  setupTestDb('isValidCreateAccountInput');
+
   it('should return true if email is valid', async () => {
-    expect(isValidEmail('test@test.com')).toBe(true);
-    expect(isValidEmail('HEY@GMAIL.COM')).toBe(true);
-    expect(isValidEmail('HEY+2@GMAIL.COM')).toBe(true);
+    expect(isValidEmail('test@test.com')).resolves.toBe(true);
+    expect(isValidEmail('HEY@GMAIL.COM')).resolves.toBe(true);
+    expect(isValidEmail('HEY+2@GMAIL.COM')).resolves.toBe(true);
   });
 
-  it('should return false if email is not valid', () => {
-    expect(() => isValidEmail('test')).toThrowError();
-    expect(() => isValidEmail('test@t')).toThrowError();
-    expect(() => isValidEmail('test@t.')).toThrowError();
-    expect(() => isValidEmail('test@gmail com')).toThrowError();
-    expect(() => isValidEmail('@gmail.com')).toThrowError();
+  it('should return false if email is not valid', async () => {
+    expect(() => isValidEmail('test')).rejects.toThrowError();
+    expect(() => isValidEmail('test@t')).rejects.toThrowError();
+    expect(() => isValidEmail('test@t.')).rejects.toThrowError();
+    expect(() => isValidEmail('test@gmail com')).rejects.toThrowError();
+    expect(() => isValidEmail('@gmail.com')).rejects.toThrowError();
+  });
+
+  it('should return false if the email is already taken', async () => {
+    await accountFactory(1, { email: 'test@gmail.com' });
+    expect(() => isValidEmail('test@gmail.com')).rejects.toThrowError();
   });
 });
 
@@ -58,18 +67,20 @@ describe('isValidPassword', () => {
 });
 
 describe('isValidCreateAccountInput', () => {
-  it('should return true if input is valid', () => {
-    expect(
+  setupTestDb('isValidCreateAccountInput');
+
+  it('should return true if input is valid', async () => {
+    await expect(
       isValidCreateAccountInput({
         firstName: 'John',
         lastName: 'Doe',
         email: 'test@gmail.com',
         password: 'aV7jNk47quZk!6eHWjon!2dkgtJTYs8T',
       })
-    ).toBe(true);
+    ).resolves.toBe(true);
   });
 
-  it.only('should throw an error if the input is not valid', async () => {
+  it('should throw an error if the input is not valid', async () => {
     await expect(
       isValidCreateAccountInput({
         firstName: '',

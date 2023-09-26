@@ -1,10 +1,16 @@
 # syntax=docker.io/docker/dockerfile:1
 
-# Dot seperated version number, e.g. 18.17.0
-# Do not include a 'v' prefix
+# This Dockerfile is shared across all Node projects by default in the VoxelKit repository.
+
+# Debian release name
+# eg: bullseye
+ARG DEBIAN_RELEASE_NAME
+
+# Dot seperated version number, do not include a 'v' prefix
+# e.g. 18.17.0
 ARG NODE_VERSION
 
-FROM node:${NODE_VERSION}-bullseye as base
+FROM node:${NODE_VERSION}-${DEBIAN_RELEASE_NAME} as base
 
 WORKDIR /usr/voxelkit
 

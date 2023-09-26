@@ -1,7 +1,7 @@
 import fs from 'fs';
-import path, { resolve } from 'path';
+import path from 'path';
 import dotenv from 'dotenv';
-import { $, execa } from 'execa';
+import { execa } from 'execa';
 import { MongoClient } from 'mongodb';
 
 // TODO: Check if watch mode or not

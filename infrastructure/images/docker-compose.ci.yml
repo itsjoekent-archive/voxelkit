@@ -13,8 +13,8 @@ services:
       - ${PWD}/services:/usr/voxelkit/services
 
   services-db:
-    image: mongo:${MONGO_VERSION}
-    container_name: 'services-db'
+    image: mongo:${MONGODB_VERSION}
+    command: mongod --quiet --logpath /dev/null
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=secret

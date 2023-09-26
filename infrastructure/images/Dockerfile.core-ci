@@ -2,4 +2,7 @@
 
 FROM voxelkit-core
 
+# Setup CI bin
+# ------------
+
 RUN cd bin/ci && npm ci --ignore-scripts
