@@ -129,9 +129,9 @@ dist
 .pnp.*
 
 # Translation compiled files
-translations/src/index.ts
-translations/src/generated
-translations/dist
+packages/translations/src/index.ts
+packages/translations/src/generated
+packages/translations/dist
 
 # Docker Compose volumes
 .compose-data/

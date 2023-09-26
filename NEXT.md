@@ -16,7 +16,6 @@ NEXT
 - setup a logger
 
   - replace console.log calls
-  - create eslint rule ?
 
 - Add toJSON override to ApiError
 - Add more event handlers to mongo ?
@@ -26,13 +25,12 @@ NEXT
 - where should migrations live? should they live in `services/` and get compiled to bin ?
 - add account migration file
 
-- create a services/test/factory folder to generate mock accounts for testing
-
 FUTURE
 
 - eslint
-  - can we enforce ordering imports alphabetically?
+  - can we enforce ordering imports alphabetically ?
   - can we enforce no back ticks, use `@/...` ?
+  - enforce custom logger instead of console.log ?
 - add request id's to logs + api error
 - sensitive info in logs redaction
   - add prefix to sensitive fields (eg: for passwords, `pw_${hash}`)

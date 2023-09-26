@@ -18,4 +18,4 @@ COPY ./ /usr/voxelkit
 
 RUN npm ci --ignore-scripts
 RUN cd services && npm ci --ignore-scripts
-RUN cd translations && npm ci --ignore-scripts
+RUN cd packages/translations && npm ci --ignore-scripts

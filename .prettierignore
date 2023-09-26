@@ -1,3 +1,3 @@
-translations/dist
-translations/src/index.ts
-translations/src/generated
+packages/translations/dist
+packages/translations/src/index.ts
+packages/translations/src/generated

@@ -74,12 +74,15 @@ const DEV_PROJECT_ID = '976770207038';
 
     // Compile libraries before launching dependents
     await Promise.all([
-      runCommandInSubfolder('translations', 'npm', ['run', 'build']),
+      runCommandInSubfolder('packages/translations', 'npm', ['run', 'build']),
     ]);
 
     // Launch long-running processes
     await Promise.all([
-      runCommandInSubfolder('translations', 'npm', ['run', 'build:watch']),
+      runCommandInSubfolder('packages/translations', 'npm', [
+        'run',
+        'build:watch',
+      ]),
     ]);
   } catch (error) {
     console.error(error);

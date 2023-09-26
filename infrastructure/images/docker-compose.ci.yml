@@ -9,7 +9,7 @@ services:
     depends_on:
       - services-db
     volumes:
-      - ${PWD}/translations:/usr/voxelkit/translations
+      - ${PWD}/packages:/usr/voxelkit/packages
       - ${PWD}/services:/usr/voxelkit/services
 
   services-db:

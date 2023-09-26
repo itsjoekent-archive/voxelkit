@@ -57,12 +57,12 @@ import { MongoClient } from 'mongodb';
 
     console.log('Building voxelkit libraries...');
 
-    await runCommandInSubfolder('translations', 'ls', ['-la']);
+    await runCommandInSubfolder('packages/translations', 'ls', ['-la']);
 
     console.log('Running voxelkit tests...');
 
     await Promise.all([
-      runCommandInSubfolder('translations', 'npm', ['test']),
+      runCommandInSubfolder('packages/translations', 'npm', ['test']),
       runCommandInSubfolder('services', 'npm', ['test']),
     ]);
   } catch (error) {
