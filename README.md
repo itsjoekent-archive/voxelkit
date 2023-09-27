@@ -8,7 +8,7 @@ First, install the necessary software.
 
 1. [Install gcloud CLI and authenticate with Google Cloud](https://cloud.google.com/sdk/docs/install).
 2. [Install Docker Desktop](https://docs.docker.com/desktop/install/mac-install/).
-3. [Install Node Version Manager](https://github.com/nvm-sh/nvm) (`brew install nvm`).
+3. Optionally, [install Node Version Manager](https://github.com/nvm-sh/nvm) (`brew install nvm`).
 
 Next, setup the repository and run.
 
@@ -21,9 +21,8 @@ $ gcloud auth application-default login
 $ git clone https://github.com/itsjoekent/voxelkit.git
 $ cd voxelkit
 
-# Setup the correct Node version locally to ensure package-lock.json
-# consistency when you're installing packages & npm workspaces is
-# working as intended.
+# (Optional) Setup the correct Node version locally, this is not
+# necessary but can be helpful when debugging on your host machine.
 $ nvm install && nvm use
 
 # Run the start script to launch everything via Docker Compose.
@@ -33,7 +32,7 @@ $ ./bin/start.sh
 # To launch tests, run the following command,
 $ ./bin/unit-test.sh
 
-# To install packages, install from the Linux container some
+# To install packages, install from the Linux container as some
 # packages have OS specific dependencies and installing from
 # a Mac will put the wrong packages in the package-lock file.
 $ ./bin/shell.sh
