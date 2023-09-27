@@ -55,10 +55,6 @@ import { MongoClient } from 'mongodb';
       }).pipeAll(process.stdout);
     }
 
-    console.log('Building voxelkit libraries...');
-
-    await runCommandInSubfolder('packages/translations', 'ls', ['-la']);
-
     console.log('Running voxelkit tests...');
 
     await Promise.all([

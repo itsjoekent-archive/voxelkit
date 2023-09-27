@@ -1,7 +1,7 @@
 import type { Request, Response, Router } from 'express';
 import { LanguageCode } from '@voxelkit/translations';
-import ApiError, { convertJsErrorToApiError } from '@/lib/api-error';
-import getRequestLanguage from '@/lib/get-request-language';
+import ApiError, { convertJsErrorToApiError } from '@/system/api-error';
+import getRequestLanguage from '@/system/get-request-language';
 
 export default async function routeWrapper(
   router: Router,

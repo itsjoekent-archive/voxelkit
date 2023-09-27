@@ -1,4 +1,5 @@
 import { formatCreateAccountInputData } from '@/formatters/account';
+import { defaultLanguage } from '@voxelkit/translations';
 
 describe('formatCreateAccountInputData', () => {
   it('should return formatted data', async () => {
@@ -7,6 +8,7 @@ describe('formatCreateAccountInputData', () => {
       lastName: ' Doe',
       email: ' TEST@gmail.com ',
       password: 'aV7jNk47quZk!6eHWjon!2dkgtJTYs8T',
+      language: defaultLanguage,
     };
 
     const formattedData =
@@ -24,6 +26,7 @@ describe('formatCreateAccountInputData', () => {
       lastName: '<script>Doe</script>',
       email: 'test@gmail.com',
       password: 'djisufijodsfmdsio',
+      language: defaultLanguage,
     };
 
     const formattedData =

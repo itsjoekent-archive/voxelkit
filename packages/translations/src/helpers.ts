@@ -2,6 +2,8 @@ export type LanguageCode = 'en-US' | 'es-MX';
 
 export const languages: LanguageCode[] = ['en-US', 'es-MX'];
 
+export const defaultLanguage: LanguageCode = 'en-US';
+
 export function translateCopy<ArgsType extends Record<string, any>>(
   dictionary: Record<string, string>,
   language: LanguageCode,

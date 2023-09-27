@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import xss from 'xss';
-import { convertJsErrorToApiError } from '@/lib/api-error';
+import { convertJsErrorToApiError } from '@/system/api-error';
 import { Account, CreateAccountInputs } from '@/schema/account';
 import { failedToCreateAccountRef } from '@voxelkit/translations';
 

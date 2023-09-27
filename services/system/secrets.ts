@@ -1,4 +1,4 @@
-import ApiError from '@/lib/api-error';
+import ApiError from '@/system/api-error';
 
 export function getValueAndFailIfMissing(key: string): string | never {
   const value = process.env[key];

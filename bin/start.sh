@@ -1,10 +1,10 @@
 #!/bin/bash
 
 DEBIAN_RELEASE_NAME=$(ecat infrastructure/requirements/debian | cut -d "." -f 2)
-MONGO_VERSION="$(cat infrastructure/requirements/mongodb)"
+MONGODB_VERSION="$(cat infrastructure/requirements/mongodb)"
 NODE_VERSION="$(cat .nvmrc | sed 's/v//')"
 
-export MONGO_VERSION="$MONGO_VERSION"
+export MONGODB_VERSION="$MONGODB_VERSION"
 
 docker build -t voxelkit-core \
   -f infrastructure/images/Dockerfile.core \

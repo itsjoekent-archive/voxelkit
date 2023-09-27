@@ -16,6 +16,11 @@ WORKDIR /usr/voxelkit
 
 COPY ./ /usr/voxelkit
 
-RUN npm ci --ignore-scripts
-RUN cd services && npm ci --ignore-scripts
-RUN cd packages/translations && npm ci --ignore-scripts
+RUN npm ci --workspaces --ignore-scripts
+
+RUN --mount=type=secret,id=GCLOUD_ADC \
+  mkdir -p ~/.config/gcloud \
+  && echo $(cat /run/secrets/GCLOUD_ADC) > ~/.config/gcloud/application_default_credentials.json \
+  && cd packages/translations \
+  && npm run build \
+  && rm ~/.config/gcloud/application_default_credentials.json

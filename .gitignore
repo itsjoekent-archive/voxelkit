@@ -135,3 +135,6 @@ packages/translations/dist
 
 # Docker Compose volumes
 .compose-data/
+
+# Temp build files
+tmp

@@ -32,4 +32,10 @@ $ ./bin/start.sh
 
 # To launch tests, run the following command,
 $ ./bin/unit-test.sh
+
+# To install packages, install from the Linux container some
+# packages have OS specific dependencies and installing from
+# a Mac will put the wrong packages in the package-lock file.
+$ ./bin/shell.sh
+$ npm i somepackage --workspace=@voxelkit/...
 ```

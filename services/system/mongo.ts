@@ -1,6 +1,9 @@
 import { MongoClient } from 'mongodb';
-import { convertJsErrorToApiError } from '@/lib/api-error';
-import { getServicesMongoDbName, getServicesMongoDbUri } from '@/lib/secrets';
+import { convertJsErrorToApiError } from '@/system/api-error';
+import {
+  getServicesMongoDbName,
+  getServicesMongoDbUri,
+} from '@/system/secrets';
 
 async function getDb() {
   try {

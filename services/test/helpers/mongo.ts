@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import { MongoClient } from 'mongodb';
 import { beforeEach } from 'vitest';
-import { getServicesMongoDbUri } from '@/lib/secrets';
+import { getServicesMongoDbUri } from '@/system/secrets';
 
 // TODO: Argument to run migrations
 export function setupTestDb(testName: string) {

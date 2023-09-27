@@ -9,6 +9,7 @@ services:
     depends_on:
       - services-db
     volumes:
+      - ~/.config/gcloud:/root/.config/gcloud
       - ${PWD}/packages:/usr/voxelkit/packages
       - ${PWD}/services:/usr/voxelkit/services
 

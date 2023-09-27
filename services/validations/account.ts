@@ -1,4 +1,4 @@
-import ApiError from '@/lib/api-error';
+import ApiError from '@/system/api-error';
 import { getAccountForEmail } from '@/queries/account';
 import { isObject } from '@/validations/helpers';
 import {

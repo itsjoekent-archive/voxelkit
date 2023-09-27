@@ -1,10 +1,6 @@
 import { formatEmail } from '@/formatters/account';
-import getDb from '@/lib/mongo';
-import {
-  Account,
-  AccountWithInternalId,
-  CreateAccountInputs,
-} from '@/schema/account';
+import getDb from '@/system/mongo';
+import { Account, AccountWithInternalId } from '@/schema/account';
 
 export async function getAccountForEmail(
   email: string
