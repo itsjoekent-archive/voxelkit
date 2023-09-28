@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 import { formatCreateAccountInputData } from '@/formatters/account';
-import getRequestLanguage from '@/system/get-request-language';
+import getRequestLanguage from '@/api/get-request-language';
 import { insertAccount } from '@/queries/account';
 import { CreateAccountInputs } from '@/schema/account';
 import { isValidCreateAccountInput } from '@/validations/account';

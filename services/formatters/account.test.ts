@@ -14,8 +14,8 @@ describe('formatCreateAccountInputData', () => {
     const formattedData =
       await formatCreateAccountInputData(createAccountInput);
 
-    expect(formattedData.firstName).toEqual('john');
-    expect(formattedData.lastName).toEqual('doe');
+    expect(formattedData.firstName).toEqual('John');
+    expect(formattedData.lastName).toEqual('Doe');
     expect(formattedData.email).toEqual('test@gmail.com');
     expect(formattedData.passwordHash).not.toEqual(createAccountInput.password);
   });
@@ -33,8 +33,8 @@ describe('formatCreateAccountInputData', () => {
       await formatCreateAccountInputData(createAccountInput);
 
     expect(formattedData.firstName).toEqual(
-      '&lt;script&gt;john&lt;/script&gt;'
+      '&lt;script&gt;John&lt;/script&gt;'
     );
-    expect(formattedData.lastName).toEqual('&lt;script&gt;doe&lt;/script&gt;');
+    expect(formattedData.lastName).toEqual('&lt;script&gt;Doe&lt;/script&gt;');
   });
 });

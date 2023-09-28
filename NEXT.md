@@ -1,11 +1,10 @@
 NEXT
 
-- get tests working again
-
-  - find untested code?
-  - setup test coverage?
-
-- create the response formatters
+- authentication
+  - add lastAuthenticatedAt, role
+  - verify jwt tokens
+  - store refersh tokens on account
+  - token endpoints
 - create the api router and express server
 - add the server to bin/start
 - create the account field validation routes
@@ -27,6 +26,8 @@ NEXT
 
 FUTURE
 
+- we should move ApiError to 'api' ?
+- how do we mock request's for unit testing?
 - eslint
   - can we enforce ordering imports alphabetically ?
   - can we enforce no back ticks, use `@/...` ?

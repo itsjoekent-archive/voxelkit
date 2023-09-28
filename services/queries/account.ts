@@ -18,10 +18,12 @@ export async function insertAccount(
   account: InsertAccountFields
 ): Promise<AccountWithInternalId> {
   const db = await getDb();
+
+  const now = Date.now();
   const document = {
     ...account,
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
+    createdAt: now,
+    updatedAt: now,
   };
 
   const { insertedId } = await db

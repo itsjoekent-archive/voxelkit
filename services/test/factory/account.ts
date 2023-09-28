@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker';
 import { insertAccount } from '@/queries/account';
-import { Account } from '@/schema/account';
+import { Account, AccountWithInternalId } from '@/schema/account';
 
 export default async function accountFactory(
   count: number = 1,
   overrides: Partial<Account> = {}
 ) {
-  const insertedAccounts: Account[] = [];
+  const insertedAccounts: AccountWithInternalId[] = [];
 
   for (let index = 0; index < count; index++) {
     const account: Account = {

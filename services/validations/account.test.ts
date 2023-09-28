@@ -13,7 +13,7 @@ import {
 import accountFactory from '@/test/factory/account';
 import { setupTestDb } from '@/test/helpers/mongo';
 
-describe('isValidName', () => {
+describe('services/validations/account/isValidName', () => {
   it('should return true if name is valid', () => {
     expect(isValidName('John')).toBe(true);
     expect(isValidName("D'Wayne")).toBe(true);
@@ -31,8 +31,8 @@ describe('isValidName', () => {
   });
 });
 
-describe('isValidEmail', () => {
-  setupTestDb('isValidCreateAccountInput');
+describe('services/validations/account/isValidEmail', () => {
+  setupTestDb('services/validations/account/isValidEmail');
 
   it('should return true if email is valid', async () => {
     expect(isValidEmail('test@test.com')).resolves.toBe(true);
@@ -54,7 +54,7 @@ describe('isValidEmail', () => {
   });
 });
 
-describe('isValidPassword', () => {
+describe('services/validations/account/isValidPassword', () => {
   it('should return true if password is valid', () => {
     expect(isValidPassword('o-!mRbuVcPvfUR6yFneh7LW.oYjtVnPZ')).toBe(true);
   });
@@ -66,8 +66,8 @@ describe('isValidPassword', () => {
   });
 });
 
-describe('isValidCreateAccountInput', () => {
-  setupTestDb('isValidCreateAccountInput');
+describe('services/validations/account/isValidCreateAccountInput', () => {
+  setupTestDb('services/validations/account/isValidCreateAccountInput');
 
   it('should return true if input is valid', async () => {
     await expect(

@@ -9,6 +9,17 @@ export function getValueAndFailIfMissing(key: string): string | never {
   return value;
 }
 
+export function stringToBoolean(
+  value: string,
+  throwIfInvalid: boolean = true
+): boolean {
+  if (throwIfInvalid && !['true', 'false'].includes(value.toLowerCase())) {
+    throw new ApiError(`Invalid boolean string '${value}'`, 500);
+  }
+
+  return value.toLowerCase() === 'true';
+}
+
 export function getEnvironment() {
   return getValueAndFailIfMissing('ENVIRONMENT');
 }

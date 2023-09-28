@@ -28,8 +28,8 @@ export async function formatCreateAccountInputData(
   }
 
   return {
-    firstName: xss(firstName.toLowerCase().trim()),
-    lastName: xss(lastName.toLowerCase().trim()),
+    firstName: xss(firstName.trim()),
+    lastName: xss(lastName.trim()),
     email: formatEmail(email),
     passwordHash,
     language,
